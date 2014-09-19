@@ -1,0 +1,35 @@
+# $Id$
+# Maintainer: Gaetan Bisson <bisson@archlinux.org>
+# Committer: Manolis Tzanidakis <manolis@archlinux.org>
+# Contributor: damir <damir@archlinux.org>
+
+pkgname=xclip-svn
+pkgver=85
+pkgrel=1
+pkgdesc='Command line interface to the X11 clipboard'
+url='http://sourceforge.net/projects/xclip'
+license=('GPL')
+depends=('libxmu')
+provides=('xclip')
+conflicts=('xclip')
+arch=('i686' 'x86_64')
+source=("xclip::svn://svn.code.sf.net/p/xclip/code/trunk")
+sha1sums=(SKIP)
+
+_svnmod=xclip
+pkgver() {
+  LANG=C svn info "$SRCDEST/$_svnmod" | awk '/Last Changed Rev/ {print $4}'
+}
+
+build() {
+  cd "${srcdir}/${_svnmod}"
+  ./bootstrap
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd "${srcdir}/${_svnmod}"
+  make DESTDIR="${pkgdir}" install
+}
+
