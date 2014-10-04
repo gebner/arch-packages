@@ -1,6 +1,7 @@
 pkg
 src
 *.tar.xz
+*.src.tar.gz
 
 /xclip-svn/xclip
 /compiz-cms-git/compiz-cms-git
