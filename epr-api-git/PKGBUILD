@@ -6,16 +6,8 @@ pkgdesc="Envisat Reader API for C"
 arch=('x86_64')
 url="https://github.com/bcdev/epr-api"
 license=('GPL3')
-groups=()
-depends=()
+depends=('glibc')
 makedepends=('cmake')
-checkdepends=()
-optdepends=()
-provides=()
-conflicts=()
-replaces=()
-backup=()
-options=()
 source=("$pkgname::git+https://github.com/bcdev/epr-api")
 md5sums=(SKIP)
 
@@ -25,14 +17,14 @@ pkgver() {
 }
 
 build() {
-	cd "$srcdir/$pkgname"
-        mkdir build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
-        make
+  cd "$srcdir/$pkgname"
+  mkdir build
+  cd build
+  cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+  make
 }
 
 package() {
-	cd "$srcdir/$pkgname/build"
-	make DESTDIR="$pkgdir/" install
+  cd "$srcdir/$pkgname/build"
+  make DESTDIR="$pkgdir/" install
 }
