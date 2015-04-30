@@ -1,0 +1,17 @@
+# Maintainer: Gabriel Ebner <gebner@gebner.org>
+pkgname=minimaxsat-bin
+pkgver=1.0
+pkgrel=1
+pkgdesc="MaxSAT solver based on MiniSAT."
+arch=('x86_64')
+url="https://github.com/izquierdo/tesis_postgrado/tree/master/src/MiniMaxSat"
+depends=()
+_binary="minimaxsat1.0"
+source=("https://github.com/izquierdo/tesis_postgrado/raw/master/src/MiniMaxSat/$_binary")
+noextract=("$_binary")
+md5sums=('6ab86b14441e564240182e0ca806d1d1')
+
+package() {
+  cd "$srcdir"
+  install -D -m0755 "$_binary" "$pkgdir/usr/bin/minimaxsat"
+}

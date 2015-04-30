@@ -1,0 +1,18 @@
+# Maintainer: Gabriel Ebner <gebner@gebner.org>
+pkgname=qmaxsat-bin
+pkgver=14.04
+pkgrel=1
+pkgdesc="A partial MaxSAT solver based on the SAT solver MiniSat."
+arch=('x86_64')
+url="https://sites.google.com/site/qmaxsat/"
+depends=()
+_binary="qmaxsat14.04auto-glucose3_static"
+source=("https://sites.google.com/site/qmaxsat/maxsat2014-1/$_binary")
+noextract=("$_binary")
+md5sums=('d80f837b713944f801323924f9a0697a')
+conflicts=('qmaxsat')
+
+package() {
+  cd "$srcdir"
+  install -D -m0755 "$_binary" "$pkgdir/usr/bin/qmaxsat"
+}
